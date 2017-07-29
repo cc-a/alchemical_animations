@@ -1,0 +1,17 @@
+A small project providing animated illustrations of dual and
+single topology alchemical perturbation techniques.
+
+Provides two scripts, single_topology.py and dual_topology.py,
+that provide the respective animations when run. Also contains
+some pdb files defining the system animations and base.py
+containing some common code for both scripts.
+
+How to run -
+python single_topology.py
+python dual_topology.py
+
+
+Dependencies -
+numpy
+vpython
+
