@@ -155,7 +155,7 @@ limit = 10.0
 sys1 = System('dual_topology.pdb', limit)
 atoms, bonds = morph(sys1, show_waters=False)
 
-label = v.label(pos=v.vector(4.0, 2.5, 1.0),
+label = v.label(pos=v.vector(3.0, 4.0, 1.0),
                 xoffset=0.0,
                 yoffset=300.0,
                 text="lambda = 0.00",
@@ -167,8 +167,10 @@ v.scene.autoscale = False
 v.scene.center = v.vector(4.0, 2.5, 1.0)
 v.scene.range = 3
 
+import povexport
+
 while True:
-    for lam in linspace(0.0, 1.0, 100):
+    for lam in linspace(0.0, 1.0, 101):
         v.rate(10)
         # doing lambda**2 looks better for the opacity
         for at in atoms['ce8_morph']:
@@ -181,3 +183,5 @@ while True:
             b.opacity = (1 - lam)**2 * 0.7 + 0.3
 
         label.text = "lambda = %.2f" % lam
+        povexport.export(filename='images/dt%03d.pov' % round(lam*100))
+    break

@@ -15,3 +15,14 @@ python dual_topology.py
 Dependencies -
 numpy
 vpython
+
+
+To produce animated gif:
+
+execute each of the single and dual scripts as above
+cd images
+make
+
+
+if you see errors regarding fonts see:
+http://www.imagemagick.org/discourse-server/viewtopic.php?t=20529

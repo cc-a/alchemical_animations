@@ -6,7 +6,6 @@ from base import atom_colours, atom_sizes, draw_bond_between_atoms
 from base import get_values_for_bond, System
 import vpython as v
 
-
 def draw_scene(sys, show_waters=True):
     """Routine to draw the provided system. Contains hardcoded directions
     for which atoms to bond together. Returns a list of spheres,
@@ -108,9 +107,9 @@ c14_2_c34, c34_2_h38, c34_2_h39, c34_2_h40 = bonds
 c2o = 1.40
 o2h = 0.95
 
-label = v.label(pos=v.vector(4.0, 2.5, 1.0),
+label = v.label(pos=v.vector(3.00, 4.0, 1.0),
                 xoffset=0.0,
-                yoffset=300.0,
+                # yoffset=300.0,
                 text="lambda = 0.00",
                 line=False,
                 height=50,
@@ -120,8 +119,10 @@ v.scene.autoscale = False
 v.scene.center = v.vector(4.0, 2.5, 1.0)
 v.scene.range = 3
 
+import povexport
+
 while True:
-    for lam in linspace(0., 1., 100):
+    for lam in linspace(0., 1., 101):
         v.rate(10)
 
         # get correct bond lengths for this lambda value
@@ -163,3 +164,5 @@ while True:
         c34.color = (1 - lam) * v.color.cyan + lam * v.color.red
 
         label.text = "lambda = %.2f" % lam
+        povexport.export(filename='images/st%03d.pov' % round(lam*100))
+    break
